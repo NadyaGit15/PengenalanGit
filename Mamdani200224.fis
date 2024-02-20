@@ -1,0 +1,46 @@
+[System]
+Name='Mamdani200224'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Jarak'
+Range=[0 1100]
+NumMFs=3
+MF1='Dekat':'trapmf',[0 0 100 300]
+MF2='Cukup.Dekat':'trapmf',[300 400 500 600]
+MF3='Jauh':'trapmf',[400 1000 1100 1100]
+
+[Input2]
+Name='H.Sewa'
+Range=[0 1100]
+NumMFs=3
+MF1='Murah':'trapmf',[0 0 100 400]
+MF2='Cukup.Murah':'trimf',[300 500 700]
+MF3='Mahal':'trapmf',[550 1000 1100 1100]
+
+[Output1]
+Name='T.Kepuasan'
+Range=[0 11]
+NumMFs=2
+MF1='Tidak.Puas':'trapmf',[0 0 1 5]
+MF2='Puas':'trapmf',[4 10 11 11]
+
+[Rules]
+1 1, 2 (1) : 1
+1 2, 2 (1) : 1
+1 3, 1 (1) : 1
+2 1, 2 (1) : 1
+2 2, 2 (1) : 1
+2 3, 1 (1) : 1
+3 1, 1 (1) : 1
+3 2, 1 (1) : 1
+3 3, 1 (1) : 1
