@@ -186,12 +186,15 @@ Hasil = evalfis([handles.Jarak handles.Harga_Sewa],Proses);
 set(handles.edit5,'string',Hasil);
 
 if Hasil <= 4 {
-        msgbox('Tidak Puas');
+        msgbox ('Tidak Puas');
+        }
+if Hasil <= 4 {
+        msgbox ('Tidak Puas');
         }
 elseif Hasil >= 6 && Hasil <= 10 {
-        msgbox('Puas');
+        msgbox ('Puas');
         }
 elseif Hasil > 4 && Hasil < 6 {
-        msgbox('Sulit Ditemukan (Tidak Puas/Puas)');
+        msgbox ('Sulit Ditemukan (Tidak Puas/Puas)');
         }
 end
