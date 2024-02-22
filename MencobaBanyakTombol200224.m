@@ -22,7 +22,7 @@ function varargout = MencobaBanyakTombol(varargin)
 
 % Edit the above text to modify the response to help MencobaBanyakTombol
 
-% Last Modified by GUIDE v2.5 21-Feb-2024 12:08:23
+% Last Modified by GUIDE v2.5 22-Feb-2024 11:50:12
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -130,7 +130,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+close;
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
@@ -167,7 +167,10 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+set(handles.edit1,'string','');
+set(handles.edit3,'string','');
+set(handles.edit5,'string','');
+set(handles.edit6,'string','');
 
 % --- Executes during object creation, after setting all properties.
 function text8_CreateFcn(hObject, eventdata, handles)
@@ -185,13 +188,42 @@ Proses = readfis('Mamdani200224');
 Hasil = evalfis([handles.Jarak handles.Harga_Sewa],Proses);
 set(handles.edit5,'string',Hasil);
 
-if Hasil <= 4 {
-        msgbox('Tidak Puas');
-        }
-elseif Hasil >= 6 && Hasil <= 10 {
-        msgbox('Puas');
-        }
-elseif Hasil > 4 && Hasil < 6 {
-        msgbox('Sulit Ditemukan (Tidak Puas/Puas)');
-        }
+% if Hasil <= 4 {
+%         msgbox('Tidak Puas');
+%         }
+% elseif Hasil >= 6 && Hasil <= 10 {
+%         msgbox('Puas');
+%         }
+% elseif Hasil > 4 && Hasil < 6 {
+%         msgbox('Sulit Ditemukan (Tidak Puas/Puas)');
+%         }
+% end
+if Hasil <= 4
+    set(handles.edit6,'string','Tidak Puas');
+elseif Hasil >=6 && Hasil <= 10
+    set(handles.edit6,'string','Puas');
+elseif Hasil >4 && Hasil <6
+    set(handles.edit6,'string','Sulit Ditemukan');
+end
+
+
+function edit6_Callback(hObject, eventdata, handles)
+% hObject    handle to edit6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit6 as text
+%        str2double(get(hObject,'String')) returns contents of edit6 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit6_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
 end
